@@ -11,8 +11,8 @@ import {
   Profile,
   ProductDetails,
   PrivateComponent,
-  HomeLayout
-} from "./Componants";
+  HomeLayout,
+} from "./Components";
 
 import "./Styles/Home.scss";
 import "./Styles/Features.scss";
@@ -33,76 +33,73 @@ import "./Styles/Loading.scss";
 
 // import axios from "axios";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import { action as contactAction } from "./Componants/Contact";
-import { action as loginAction } from "./Componants/Login";
-import { action as profileAction } from "./Componants/Profile";
-import {loader as cartLoader} from "./Componants/Cart"
-import {loader as HomeLayoutLoader} from "./Componants/HomeLayout"
+import { action as contactAction } from "./Components/Contact";
+import { action as loginAction } from "./Components/Login";
+import { action as profileAction } from "./Components/Profile";
+import { loader as cartLoader } from "./Components/Cart";
+import { loader as HomeLayoutLoader } from "./Components/HomeLayout";
 
 const router = createBrowserRouter([
   {
-    path:"/",
-    element:<HomeLayout />,
-    action:HomeLayoutLoader,
-    
-    children:[
+    path: "/",
+    element: <HomeLayout />,
+    action: HomeLayoutLoader,
+
+    children: [
       {
-        index:true,
-        element:<PrivateComponent Component={Home} />,
+        index: true,
+        element: <PrivateComponent Component={Home} />,
       },
       {
-        path:"shop",
-        element:<Shop/>
+        path: "shop",
+        element: <Shop />,
       },
       {
-        path:"blog",
-        element:<Blog />
+        path: "blog",
+        element: <Blog />,
       },
       {
-        path:"about",
-        element:<About />
+        path: "about",
+        element: <About />,
       },
       {
-        path:"contact",
-        element:< Contact/>,
-        action:contactAction
+        path: "contact",
+        element: <Contact />,
+        action: contactAction,
       },
       {
-        path:"register",
-        element:< Registration/>
+        path: "register",
+        element: <Registration />,
       },
       {
-        path:"login",
-        element:<Login />,
-        action:loginAction
+        path: "login",
+        element: <Login />,
+        action: loginAction,
       },
       {
-        path:"cart",
-        loader:cartLoader,
-        element:<PrivateComponent Component={Cart} />
+        path: "cart",
+        loader: cartLoader,
+        element: <PrivateComponent Component={Cart} />,
       },
       {
-        path:"profile",
-        action:profileAction,
-        element:<PrivateComponent Component={Profile} />,
+        path: "profile",
+        action: profileAction,
+        element: <PrivateComponent Component={Profile} />,
       },
       {
-        path:"ProductDetails",
-        element:<ProductDetails /> 
-      }
-    ]
+        path: "ProductDetails",
+        element: <ProductDetails />,
+      },
+    ],
   },
-  
-])
+]);
 
 const App = () => {
   const scrollOptions = {
     behavior: "auto",
     block: "start",
   };
-  return (
-   <RouterProvider scroll={scrollOptions} router={router}/>
-  );
+  return <RouterProvider scroll={scrollOptions} router={router} />;
 };
 
 export default App;
